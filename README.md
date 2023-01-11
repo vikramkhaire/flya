@@ -1,2 +1,2 @@
 # flya
-a simple calculations to find the gas in diffuse Lyman alpha fraction 
+a simple calculation to find the gas in diffuse Lyman alpha fraction 
