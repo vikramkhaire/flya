@@ -42,17 +42,17 @@ def Hz_flat(O_m, O_lambda, H0, z = 0.1):
 
 # assumed prams
 z = 0.1
-Gamma_HI = 5e-14
-T0 = 5000 # K
-gamma = 1.5
-tau_avg = 0.01
+Gamma_HI = 10e-14
+T0 = 4038 # K
+gamma = 1.53
+tau_avg = 0.0545
 
 # cosmo params assumed
-O_m = 0.3
-O_lambda = 0.7
-O_bh2 = 0.02242
-H0 = 70
-y_p = 0.2454
+O_m = 0.3089
+O_lambda = 0.6911
+O_bh2 = 0.0223
+H0 = 67.74
+y_p = 0.24
 
 # electron density correction
 kHe = (2-y_p)/(2-2*y_p)
