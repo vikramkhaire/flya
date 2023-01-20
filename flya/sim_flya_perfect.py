@@ -34,16 +34,17 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
 
     # few values
     rho_crit = 3 * (100 * u.km.to(u.cm) / Mpc_to_cm) ** 2 / (8 * np.pi * G)
-    #print('Rho crit', rho_crit, '* h^2')
+    print('Rho crit', rho_crit, '* h^2')
     nu_lya = c / lya  # Hz Lyman alpha frequency
 
     A = np.pi * e ** 2 * f_alpha * alpha_A * rho_crit ** 2 / (m_e * nu_lya * m_p ** 2)
-    #print('A = ', A)
+    print('A = ', A)
 
     # read cosmology parameters
     cosmo = tab.Table.read(taufile, hdu = 1)
 
     z = cosmo['z'][0]
+    print('z', z)
     O_m = cosmo['Om0'][0]
     O_lambda = cosmo['Ode0'][0]
     h = cosmo['lit_h'] [0]
