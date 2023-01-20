@@ -28,6 +28,7 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
     m_p = const.m_p.to(u.g).value  # proton mass 9.1093837015e-28 grams
     lya = 1.21567e-5  # cm Lyman alpha wavelength
     c = const.c.to(u.cm / u.s).value  # c in cm/s
+    Mpc_to_cm = u.Mpc.to(u.cm)  # 3.085677581467192e+24
     alpha_A = 4.2e-13  # recombination coefficient of H at T= 10^4 K
     G = const.G.to(u.cm ** 3 / u.g / u.s ** 2).value  # G value
 
