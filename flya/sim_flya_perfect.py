@@ -56,6 +56,7 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
 
     if Gamma_HI == None:
         Gamma_HI = 1e-12* cosmo['GAMMA'][0]
+    print('Gamma_HI', Gamma_HI)
 
     if simname == 'tng':
         T0 = 4038  # K
