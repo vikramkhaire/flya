@@ -5,6 +5,18 @@ import astropy.units as u
 import astropy.table as tab
 
 
+
+
+#---- function to calculte the H(z)
+def Hz_flat(O_m, O_lambda, H0, z = 0.1):
+    """
+    H0 in std units km/s/Mpc
+    """
+    hz = H0*u.km.to(u.cm)/Mpc_to_cm *np.sqrt(O_lambda + O_m*(1+z)**3)
+    hz_100 = 100*hz/H0 # in units of h
+
+    return hz, hz_100
+
 def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =[0.1, 5]):
 
     # constants
