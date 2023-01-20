@@ -88,6 +88,6 @@ path = '/mnt/quasar/vikram/Illustris_z01/get_Gamma_HI'
 taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.12400_Nran_010000_seed_1.fits'
 
 diffuse_lya_fraction(taufile=taufile)
-diffuse_lya_fraction(taufile=taufile, taufile=[0.05, 5])
+diffuse_lya_fraction(taufile=taufile, tau_limits=[0.05, 5])
 
 
