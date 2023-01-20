@@ -31,17 +31,17 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
 
     # few values
     rho_crit = 3 * (100 * u.km.to(u.cm) / Mpc_to_cm) ** 2 / (8 * np.pi * G)
-    print('Rho crit', rho_crit, '* h^2')
+    #print('Rho crit', rho_crit, '* h^2')
     nu_lya = c / lya  # Hz Lyman alpha frequency
 
     A = np.pi * e ** 2 * f_alpha * alpha_A * rho_crit ** 2 / (m_e * nu_lya * m_p ** 2)
-    print('A = ', A)
+    #print('A = ', A)
 
     # read cosmology parameters
     cosmo = tab.Table.read(taufile, hdu = 1)
 
     z = cosmo['z'][0]
-    print('z', z)
+    #print('z', z)
     O_m = cosmo['Om0'][0]
     O_lambda = cosmo['Ode0'][0]
     h = cosmo['lit_h'] [0]
@@ -53,7 +53,7 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
 
     if Gamma_HI == None:
         Gamma_HI = 1e-12* cosmo['GAMMA'][0]
-    print('Gamma_HI', Gamma_HI, 'Obh2', O_bh2, 'yp', y_p, 'lambda', O_lambda)
+    #print('Gamma_HI', Gamma_HI, 'Obh2', O_bh2, 'yp', y_p, 'lambda', O_lambda)
 
     if simname == 'tng':
         T0 = 4038  # K
@@ -88,4 +88,6 @@ path = '/mnt/quasar/vikram/Illustris_z01/get_Gamma_HI'
 taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.12400_Nran_010000_seed_1.fits'
 
 diffuse_lya_fraction(taufile=taufile)
+diffuse_lya_fraction(taufile=taufile, taufile=[0.05, 5])
+
 
