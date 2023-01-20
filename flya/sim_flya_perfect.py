@@ -80,7 +80,7 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
     hz, hz_100 = Hz_flat(O_m = O_m, O_lambda = O_lambda, H0 = H0, z=z)
     fLya = (Gamma_HI*hz/(A*kHe))**0.5 * tau_avg**(beta/2) *(T0/10000)**(0.35) / ( O_bh2 * (1-y_p) * (1+z)**3 )
 
-    print(fLya, taufile)
+    print(fLya, tau_avg, taufile)
 
     return fLya
 
