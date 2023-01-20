@@ -85,9 +85,21 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
 
 
 path = '/mnt/quasar/vikram/Illustris_z01/get_Gamma_HI'
-taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.12400_Nran_010000_seed_1.fits'
+taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.07500_Nran_010000_seed_42.fits'
 
 diffuse_lya_fraction(taufile=taufile)
+print('tau lims 0.1, 5')
+diffuse_lya_fraction(taufile=taufile, tau_limits=[0.1, 3])
+print('tau lims 0.1, 8')
+diffuse_lya_fraction(taufile=taufile, tau_limits=[0.1, 8])
+print('tau lims 0.05, 5')
 diffuse_lya_fraction(taufile=taufile, tau_limits=[0.05, 5])
+print('tau lims 0.05, 3')
+diffuse_lya_fraction(taufile=taufile, tau_limits=[0.05, 3])
+print('tau lims 0.05, 8')
+diffuse_lya_fraction(taufile=taufile, tau_limits=[0.05, 8])
+print('tau lims 0.01, 5')
+diffuse_lya_fraction(taufile=taufile, tau_limits=[0.01, 5])
+
 
 
