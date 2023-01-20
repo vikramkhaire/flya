@@ -85,9 +85,10 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
 
 
 path = '/mnt/quasar/vikram/Illustris_z01/get_Gamma_HI'
-taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.07500_Nran_010000_seed_42.fits'
+#taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.07500_Nran_010000_seed_42.fits'
+taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.05000_Nran_010000_seed_42.fits'
 
-file_name = 'dflya_tng_Gamma_0.075_taulim_0.00_x.fits'
+file_name = 'dflya_tng_Gamma_0.050_taulim_0.00_x.fits'
 
 flya_array  = []
 x = np.arange(10)+1
@@ -100,7 +101,7 @@ res.write(file_name, overwrite = True)
 print(res)
 
 
-file_name = 'dflya_tng_Gamma_0.075_taulim_0.01_x.fits'
+file_name = 'dflya_tng_Gamma_0.050_taulim_0.01_x.fits'
 
 flya_array  = []
 x = np.arange(10)+1
@@ -113,7 +114,7 @@ res.write(file_name, overwrite = True)
 print(res)
 
 
-file_name = 'dflya_tng_Gamma_0.075_taulim_0.05_x.fits'
+file_name = 'dflya_tng_Gamma_0.050_taulim_0.05_x.fits'
 
 flya_array  = []
 x = np.arange(10)+1
@@ -125,7 +126,7 @@ res =  tab.Table([x, flya_array], names= ('tau', 'frac'))
 res.write(file_name, overwrite = True)
 print(res)
 
-file_name = 'dflya_tng_Gamma_0.075_taulim_0.10_x.fits'
+file_name = 'dflya_tng_Gamma_0.050_taulim_0.10_x.fits'
 
 flya_array  = []
 x = np.arange(10)+1
@@ -136,6 +137,61 @@ for i in x:
 res =  tab.Table([x, flya_array], names= ('tau', 'frac'))
 res.write(file_name, overwrite = True)
 print(res)
+
+
+
+taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.10000_Nran_010000_seed_42.fits'
+
+file_name = 'dflya_tng_Gamma_0.100_taulim_0.00_x.fits'
+
+flya_array  = []
+x = np.arange(10)+1
+for i in x:
+    fraction =diffuse_lya_fraction(taufile=taufile, tau_limits=[0, i])
+    flya_array.append(fraction)
+
+res =  tab.Table([x, flya_array], names= ('tau', 'frac'))
+res.write(file_name, overwrite = True)
+print(res)
+
+
+file_name = 'dflya_tng_Gamma_0.100_taulim_0.01_x.fits'
+
+flya_array  = []
+x = np.arange(10)+1
+for i in x:
+    fraction =diffuse_lya_fraction(taufile=taufile, tau_limits=[0.01, i])
+    flya_array.append(fraction)
+
+res =  tab.Table([x, flya_array], names= ('tau', 'frac'))
+res.write(file_name, overwrite = True)
+print(res)
+
+
+file_name = 'dflya_tng_Gamma_0.100_taulim_0.05_x.fits'
+
+flya_array  = []
+x = np.arange(10)+1
+for i in x:
+    fraction =diffuse_lya_fraction(taufile=taufile, tau_limits=[0.05, i])
+    flya_array.append(fraction)
+
+res =  tab.Table([x, flya_array], names= ('tau', 'frac'))
+res.write(file_name, overwrite = True)
+print(res)
+
+file_name = 'dflya_tng_Gamma_0.100_taulim_0.10_x.fits'
+
+flya_array  = []
+x = np.arange(10)+1
+for i in x:
+    fraction =diffuse_lya_fraction(taufile=taufile, tau_limits=[0.1, i])
+    flya_array.append(fraction)
+
+res =  tab.Table([x, flya_array], names= ('tau', 'frac'))
+res.write(file_name, overwrite = True)
+print(res)
+
 
 """
 diffuse_lya_fraction(taufile=taufile, tau_limits=[0.1, 3])
