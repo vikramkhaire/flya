@@ -45,7 +45,7 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
     O_m = cosmo['Om0'][0]
     O_lambda = cosmo['Ode0'][0]
     h = cosmo['lit_h'] [0]
-    O_bh2 = h**2 * cosmo['lit_h'] [0]
+    O_bh2 = h**2 * cosmo['Ob0'] [0]
     H0 = h *100
     y_p = 1 - cosmo['X'] [0]
     # electron density correction
