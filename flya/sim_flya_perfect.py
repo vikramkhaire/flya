@@ -4,9 +4,6 @@ import astropy.constants as const
 import astropy.units as u
 import astropy.table as tab
 
-
-
-
 #---- function to calculte the H(z)
 def Hz_flat(O_m, O_lambda, H0, z = 0.1):
     """
@@ -56,7 +53,7 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
 
     if Gamma_HI == None:
         Gamma_HI = 1e-12* cosmo['GAMMA'][0]
-    print('Gamma_HI', Gamma_HI)
+    print('Gamma_HI', Gamma_HI, 'Obh2', O_bh2, 'yp', y_p, 'lambda', O_lambda)
 
     if simname == 'tng':
         T0 = 4038  # K
