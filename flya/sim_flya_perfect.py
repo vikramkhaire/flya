@@ -95,7 +95,7 @@ file_name = 'dflya_tng_Gamma_0.075_taulim_0.01_x.fits'
 flya_array  = []
 x = np.arange(4)+1
 for i in x:
-    fraction =diffuse_lya_fraction(taufile=taufile, tau_limits=[0.01, x])
+    fraction =diffuse_lya_fraction(taufile=taufile, tau_limits=[0.01, i])
     flya_array.append(fraction)
 
 res =  tab.Table([x, flya_array], names= ('tau', 'frac'))
