@@ -89,6 +89,21 @@ taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.07500_Nran_010000_s
 
 diffuse_lya_fraction(taufile=taufile)
 print('tau lims 0.1, 5')
+
+file_name = 'dflya_tng_Gamma_0.075_taulim_0.01_x.fits'
+
+flya_array  = []
+x = np.arange(4)+1
+for i in x:
+    fraction =diffuse_lya_fraction(taufile=taufile, tau_limits=[0.01, x])
+    flya_array.append(fraction)
+
+res =  tab.Table([x, flya_array], names= ('tau', 'frac'))
+res.write(file_name, overwrite = True)
+print(res)
+
+
+"""
 diffuse_lya_fraction(taufile=taufile, tau_limits=[0.1, 3])
 print('tau lims 0.1, 8')
 diffuse_lya_fraction(taufile=taufile, tau_limits=[0.1, 8])
@@ -100,6 +115,8 @@ print('tau lims 0.05, 8')
 diffuse_lya_fraction(taufile=taufile, tau_limits=[0.05, 8])
 print('tau lims 0.01, 5')
 diffuse_lya_fraction(taufile=taufile, tau_limits=[0.01, 5])
+"""
+
 
 
 
