@@ -12,6 +12,8 @@ def Hz_flat(O_m, O_lambda, H0, z = 0.1):
     """
     H0 in std units km/s/Mpc
     """
+    Mpc_to_cm = u.Mpc.to(u.cm)  # 3.085677581467192e+24
+
     hz = H0*u.km.to(u.cm)/Mpc_to_cm *np.sqrt(O_lambda + O_m*(1+z)**3)
     hz_100 = 100*hz/H0 # in units of h
 
@@ -27,7 +29,6 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
     lya = 1.21567e-5  # cm Lyman alpha wavelength
     c = const.c.to(u.cm / u.s).value  # c in cm/s
     alpha_A = 4.2e-13  # recombination coefficient of H at T= 10^4 K
-    Mpc_to_cm = u.Mpc.to(u.cm)  # 3.085677581467192e+24
     G = const.G.to(u.cm ** 3 / u.g / u.s ** 2).value  # G value
 
     # few values
