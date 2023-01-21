@@ -65,7 +65,7 @@ def calculate_and_write(density_cut, temperature_cut):
 
 
 
-def prep_input(ovtfile, simname):
+def prep_input(ovt_file, simname):
     data = tab.Table.read(ovt_file, hdu=2)
     T = np.array(data['T']).flatten()
     oden = np.array(data['ODEN']).flatten()
@@ -95,7 +95,7 @@ def prep_input(ovtfile, simname):
     return
 
 tng_ovt = '/mnt/quasar/vikram/Illustris_z01/max_skewers_cut/igm/ran_skewers_z01_random_OVT.fits'
-prep_input(ovtfile=tng_ovt, simname= 'tng')
+prep_input(ovt_file=tng_ovt, simname= 'tng')
 
 """
 ill_data = '/mnt/quasar/vikram/Illustris_z01/max_skewers_cut/igm/ran_skewers_z01_random_OVT.fits'
