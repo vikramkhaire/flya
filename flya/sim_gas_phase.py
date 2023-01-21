@@ -83,7 +83,7 @@ def prep_input(ovt_file, simname):
         diff, whim, hh, cond = get_gasphase(T=T, oden=oden, Temp_cut=Temp, density_cut=rho)
         diff_array.append(diff)
         whim_array.append(whim)
-        hh_array,append(hh)
+        hh_array.append(hh)
         cond_array.append(cond)
 
     res = tab.Table([rho_array, [Temp]*len(rho_array), diff_array, whim_array, hh_array, cond_array],
