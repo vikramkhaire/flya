@@ -41,11 +41,11 @@ def Hz_flat(O_m, O_lambda, H0, z = 0.1):
 
 
 # assumed prams
-z = 0.1
-Gamma_HI = 10e-14
+z = 0.0994
+Gamma_HI = 12.4e-14
 T0 = 4038 # K
 gamma = 1.53
-tau_avg = 0.0545
+tau_avg = 0.022
 
 # cosmo params assumed
 O_m = 0.3089
