@@ -34,7 +34,7 @@ ax.set_ylabel(r'f$_{\rm Ly \alpha}$')
 ax.set_xlabel(r'$\Delta$')
 
 ax.legend( loc = 'best', fontsize = 10)
-ax.set_ylim(0.15, 0.9)
+ax.set_ylim(0.15, 0.55)
 # decorating the plot
 for axis in ['top', 'bottom', 'left', 'right']:
     ax.spines[axis].set_linewidth(1.5)
