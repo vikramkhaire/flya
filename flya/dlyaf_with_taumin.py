@@ -100,9 +100,9 @@ def prep_input(taufile, Gamma12,  simname):
     res.write(file_name, overwrite=True)
     print(res)
 
-    # tau max = 4
+    # tau max = 5
     taumax= 5
-    file_name = 'taumin_{}_Gamma_{:0.3f}_taumax_4.fits'.format(simname, Gamma12)
+    file_name = 'taumin_{}_Gamma_{:0.3f}_taumax_5.fits'.format(simname, Gamma12)
     flya_array = []
     for tau_low in tau_array:
         fraction = diffuse_lya_fraction(taufile=taufile, simname= simname, tau_limits=[tau_low, taumax])
@@ -112,7 +112,7 @@ def prep_input(taufile, Gamma12,  simname):
     res.write(file_name, overwrite=True)
     print(res)
 
-    return 
+    return
 
 
 
