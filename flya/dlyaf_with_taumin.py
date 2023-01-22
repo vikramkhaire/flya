@@ -86,7 +86,7 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
 
 def prep_input(taufile, Gamma12,  simname):
     print('for', simname, 'Gamma_12', Gamma12)
-    tau_array = np.arange(41)*0.005
+    tau_array = np.arange(51)*0.001
 
     # tau max = 4
     taumax= 4
@@ -118,6 +118,10 @@ def prep_input(taufile, Gamma12,  simname):
 
 simname = 'ill'
 path = '/mnt/quasar/vikram/Illustris_z01/old_Illustris/get_Gamma_HI'
+
+taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.01000_Nran_010000_seed_42.fits'
+prep_input(taufile= taufile, Gamma12= 0.01, simname= simname)
+
 taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.05000_Nran_010000_seed_42.fits'
 prep_input(taufile= taufile, Gamma12= 0.05, simname= simname)
 
@@ -130,6 +134,10 @@ prep_input(taufile= taufile, Gamma12= 0.10, simname= simname)
 
 simname = 'tng'
 path = '/mnt/quasar/vikram/Illustris_z01/get_Gamma_HI'
+
+taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.01000_Nran_010000_seed_42.fits'
+prep_input(taufile= taufile, Gamma12= 0.01, simname= simname)
+
 taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.05000_Nran_010000_seed_42.fits'
 prep_input(taufile= taufile, Gamma12= 0.05, simname= simname)
 
