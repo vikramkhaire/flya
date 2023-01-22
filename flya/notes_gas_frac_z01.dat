@@ -1,0 +1,37 @@
+
+z =0.1
+
+Diffuse Lyman alpha fraction for Shull and Smith defination (Delta < 1000, T< 1e5):
+TNG = 0.397219265153281
+ILL = 0.2558800721245848
+
+Diffuse Lyman alpha fraction for Dave defination (Delta < 120, T< 1e5):
+TNG = 0.3846925721047914
+ILL = 0.23242597144345933
+
+
+In [1]: run sim_gas_phase_definition.py                                                                                                                                                                     
+
+/mnt/quasar/vikram/Illustris_z01/max_skewers_cut/igm/ran_skewers_z01_random_OVT.fits
+Dave defination (Delta < 120, T< 1e5)
+rho-T 120 100000.0 0.392564210855228 WHIM
+rho-T 120 100000.0 0.3846925721047914 diffuse-Lya
+0.03132509032168933 condensed
+0.1914181267182857 hot-halo
+Smith & Shull definition (Delta < 1000, T< 1e5)
+rho-T 1000 100000.0 0.5299673340807872 WHIM
+rho-T 1000 100000.0 0.397219265153281 diffuse-Lya
+0.018798397273198816 condensed
+0.05401500349272815 hot-halo
+/mnt/quasar/vikram/Illustris_z01/old_Illustris/max_skewers_cut/igm/ran_skewers_z01_random_OVT.fits
+Dave defination (Delta < 120, T< 1e5)
+rho-T 120 100000.0 0.6158935986282982 WHIM
+rho-T 120 100000.0 0.23242597144345933 diffuse-Lya
+0.12401851869018062 condensed
+0.027661911238060482 hot-halo
+Smith & Shull definition (Delta < 1000, T< 1e5)
+rho-T 1000 100000.0 0.6366642468544353 WHIM
+rho-T 1000 100000.0 0.2558800721245848 diffuse-Lya
+0.10056441800905659 condensed
+0.006891263011921684 hot-halo
+
