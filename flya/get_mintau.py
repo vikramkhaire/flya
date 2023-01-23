@@ -6,8 +6,8 @@ from scipy.interpolate import interp1d
 
 def find_dlyaf(simname, mintau_file):
 
-    taumin_dave = 0.025
-    taumin_smith = 0.02
+    taumin_dave = 0.03
+    taumin_smith = 0.015
 
 
     if simname == 'tng':
@@ -29,7 +29,7 @@ def find_dlyaf(simname, mintau_file):
     print(dlyaf_smith, frac_smith_est, 'diff = ', (frac_smith_est-dlyaf_smith)*100)
 
 
-    return
+    return #frac_smith_est, frac_smith_est
 
 
 
@@ -45,7 +45,7 @@ def find_mintau(simname, mintau_file):
 
     data = tab.Table.read(mintau_file)
 
-    f = interp1d(data['frac'], data['taumin'])
+    f = interp1d(data['frac'], data['taumin'], fill_value =  'extrapolate')
 
     tau_min_dave =  f(dlyaf_dave)
     tau_min_smith = f(dlyaf_smith)
@@ -57,7 +57,7 @@ def prep_input(simname):
     print('for', simname)
     path = '/home/vikram/flya/flya/data'
 
-    Gamma_12_list = [0.05, 0.075, 0.10]
+    Gamma_12_list = [0.01, 0.05, 0.075, 0.10]
 
     """
     for taumax in [4, 5]:
@@ -68,7 +68,6 @@ def prep_input(simname):
 
             print('taumin', dave, smith, 'Gamma12=', Gamma12, 'taumax = ', taumax)
     """
-
 
     # -------- for validataion
     for taumax in [4, 5]:
@@ -82,3 +81,13 @@ def prep_input(simname):
 prep_input('tng')
 prep_input('ill')
 
+"""
+taumin_dave = 0.03
+taumin_smith = 0.015
+These are final values so that
+Dave-definition tau_min = 0.03  (Values within 2.6 % for both sims)
+For Smith defination tau_min = 0.015  (less than 2% for illustris, 2.4 % for tng)
+
+TODO : Repeat above analysis for z= 0.03
+Check with few Nyx simulations 
+"""
