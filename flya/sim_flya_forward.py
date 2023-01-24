@@ -114,57 +114,28 @@ def diffuse_lya_fraction_forward(taufile, forward_file, Gamma_HI = None, simname
 
     return fLya, fLya_perfect
 
-"""
 
-def prep_input(taufile, Gamma12,  simname):
-    print('for', simname, 'Gamma_12', Gamma12)
-    x = np.arange(10) + 1
-
-    for tau_low in list([0, 0.01, 0.05, 0.1]):
-        file_name = 'dflya_{}_Gamma_{:0.3f}_taulim_{:0.2f}_x.fits'.format(simname, Gamma12, tau_low)
-
-        flya_array = []
-        for i in x:
-            fraction = diffuse_lya_fraction(taufile=taufile, simname= simname, tau_limits=[tau_low, i])
-            flya_array.append(fraction)
-
-        res = tab.Table([x, flya_array], names=('tau', 'frac'))
-        res.write(file_name, overwrite=True)
-        print(res)
-
-
-
-simname = 'ill'
-path = '/mnt/quasar/vikram/Illustris_z01/old_Illustris/get_Gamma_HI'
-taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.05000_Nran_010000_seed_42.fits'
-prep_input(taufile= taufile, Gamma12= 0.05, simname= simname)
-
-taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.07500_Nran_010000_seed_42.fits'
-prep_input(taufile= taufile, Gamma12= 0.075, simname= simname)
-
-taufile = path + '/' +'ran_skewers_01_random_OVT_tau_Gamma_0.10000_Nran_010000_seed_42.fits'
-prep_input(taufile= taufile, Gamma12= 0.10, simname= simname)
-
-"""
 
 Gamma_12 = 0.05
-path = '/mnt/quasar/vikram/Illustris_z01/old_Illustris/get_Gamma_HI'
-print ('for ill --- ignore tng label')
+SN_array = np.arange(21)*5+30
+
+
+sim = 'tng'
+path = '/mnt/quasar/vikram/Illustris_z01/get_Gamma_HI'
 tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_42.fits'.format(Gamma_12)
-SN =100
-fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
 
-flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
-print(flya, flya_perfect, 'TNG - SN', SN)
+for SN in SN_array:
+    fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
+    flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
+    print(flya, flya_perfect, sim, 'SN', SN)
 
-SN =70
-fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
 
-flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
-print(flya, flya_perfect, 'TNG - SN', SN )
+sim = 'ill'
+path = '/mnt/quasar/vikram/Illustris_z01/old_Illustris/get_Gamma_HI'
+tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_42.fits'.format(Gamma_12)
 
-SN =35
-fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
+for SN in SN_array:
+    fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
+    flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
+    print(flya, flya_perfect, sim, 'SN', SN)
 
-flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
-print(flya, flya_perfect, 'TNG - SN', SN )
