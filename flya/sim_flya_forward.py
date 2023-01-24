@@ -48,10 +48,10 @@ def diffuse_lya_fraction_forward(taufile, forward_file, Gamma_HI = None, simname
 
     if tau_def == 'Dave':
         tau_limits = [0.03, 4]
-        print('Assuming Dave et al 2010 definitoin')
+        #print('Assuming Dave et al 2010 definitoin')
     else: # Smith
         tau_limits = [0.015, 4]
-        print('Assuming Shull and Smith definition')
+        #print('Assuming Shull and Smith definition')
 
     # constants
     e = 4.8032e-10  # in esu
@@ -110,7 +110,7 @@ def diffuse_lya_fraction_forward(taufile, forward_file, Gamma_HI = None, simname
     fLya_perfect = (Gamma_HI*hz/(A*kHe))**0.5 * tau_avg_perfect**(beta/2) *(T0/10000)**(0.35) / ( O_bh2 * (1-y_p) * (1+z)**3 )
 
 
-    print(fLya, tau_avg, taufile)
+    #print(fLya, tau_avg, taufile)
 
     return fLya, fLya_perfect
 
