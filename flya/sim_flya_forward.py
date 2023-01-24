@@ -147,7 +147,8 @@ prep_input(taufile= taufile, Gamma12= 0.10, simname= simname)
 """
 
 Gamma_12 = 0.05
-path = '/mnt/quasar/vikram/Illustris_z01/get_Gamma_HI'
+path = '/mnt/quasar/vikram/Illustris_z01/old_Illustris/get_Gamma_HI'
+print ('for ill --- ignore tng label')
 tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_42.fits'.format(Gamma_12)
 SN =100
 fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
