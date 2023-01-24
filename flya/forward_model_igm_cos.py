@@ -69,7 +69,7 @@ def run_forward (simname, outfileFirstName = 'igm', zsim =0.1, dz_total = 1):
     dz = ((distance / ncell) * hubblez / c).value
 
     nmodel = int(dz_total//dz +1)
-    print ('need {} models to get total dz {}'.fromat(nmodel, dz_total))
+    print ('need {} models to get total dz {}'.format(nmodel, dz_total))
     #--------------------------------------------
 
     model, res = forward_model.model_readin(taufile=file)
