@@ -24,7 +24,7 @@ def get_tau_avg (beta, forward_file, tau_limits):
 
     # fwd model
     flux  = data['Flux']
-    flux [flux< 0.02] = 0.018 # since -ln (0.018) ~4
+    flux [flux< 0.0] = 0.0001 # since -ln (0.018) ~4
     tau = -np.log(flux)
     # sort
     tau[tau<tau_limits[0]] = 0
