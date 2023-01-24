@@ -74,8 +74,8 @@ def run_forward (simname, outfileFirstName = 'igm', zsim =0.1, dz_total = 1):
 
     model, res = forward_model.model_readin(taufile=file)
 
-
-    for SN in [35, 70, 100]:
+    SN_array = np.arange(21)*5+ 30
+    for SN in SN_array:
         print('running for SN', SN)
         model_all_effects, model_in_lengthened_only, res_array, ind = forward_model.forward_model(
             model=model, data_resolution=res, nmodel_spectra=nmodel, SN=SN)
