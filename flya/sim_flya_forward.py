@@ -153,4 +153,16 @@ SN =100
 fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
 
 flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
-print(flya, flya_perfect, 'TNG')
+print(flya, flya_perfect, 'TNG - SN', SN)
+
+SN =70
+fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
+
+flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
+print(flya, flya_perfect, 'TNG - SN', SN )
+
+SN =35
+fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
+
+flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
+print(flya, flya_perfect, 'TNG - SN', SN )
