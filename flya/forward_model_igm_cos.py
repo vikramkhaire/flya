@@ -20,6 +20,11 @@ os.nice(10)
 
 def run_forward (simname, outfileFirstName = 'igm', zsim =0.1, dz_total = 1):
 
+    # constants
+    c = const.c.to(u.km / u.s).value
+    lya = 1215.67
+    lya *= u.AA
+
     # the photoinoization rate in units 10^-12 s^-1 # see notes for choosing this value
     Gamma_12 = 0.05
 
