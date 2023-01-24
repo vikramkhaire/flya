@@ -33,7 +33,7 @@ def get_tau_avg (beta, forward_file, tau_limits):
 
     # no noise no LSF
     flux  = data['Flux_nonoise_infres']
-    flux [flux< 0.0] = 0.0001 # a lower value
+    flux [flux< 1e-4] = 0.0001 # a lower value
     tau = -np.log(flux)
     # sort
     tau[tau<tau_limits[0]] = 0
