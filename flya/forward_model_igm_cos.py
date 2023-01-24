@@ -11,6 +11,11 @@ import matplotlib as mpl
 mpl.use("Agg")
 import astropy.table as tab
 from enigma.whim.forward_model import forward_model
+from astropy.cosmology import FlatLambdaCDM
+import logging
+import numpy as np
+import astropy.constants as const
+import astropy.units as u
 os.nice(10)
 
 def run_forward (simname, outfileFirstName = 'igm', zsim =0.1, dz_total = 1):
