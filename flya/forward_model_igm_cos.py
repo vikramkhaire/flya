@@ -90,7 +90,7 @@ def run_forward (simname, outfileFirstName = 'igm', zsim =0.1, dz_total = 1):
 
         outfilename = outpathname + '/forward_model_' + outfileFirstName + 'SN_{:0.0f}_res_cos_LP1.fits'.format(SN)
         model_all_effects.write(outfilename, overwrite=True)
-        
+
         """
         print('stroring in dir: ', outpathname)
         if not os.path.isdir(outpathname):
