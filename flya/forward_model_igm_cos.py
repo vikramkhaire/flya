@@ -9,6 +9,7 @@ os.environ["MKL_NUM_THREADS"] = "20"
 #-----------------
 import matplotlib as mpl
 mpl.use("Agg")
+import astropy.table as tab
 from enigma.whim.forward_model import forward_model
 os.nice(10)
 
@@ -35,8 +36,7 @@ def run_forward (simname, outfileFirstName = 'igm', zsim =0.1, dz_total = 1):
     file = outpath + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_42.fits'.format(Gamma_12)
     print('from:', file)
 
-    model, res = forward_model.model_readin(taufile=file)
-
+    params = tab.Table.read(file, hdu = 1)
     #------------ find number of spectra
     # assigning box and cosmology parameters
     ncell = params['Ng'][0]
@@ -61,6 +61,9 @@ def run_forward (simname, outfileFirstName = 'igm', zsim =0.1, dz_total = 1):
     nmodel = int(dz_total//dz +1)
     print ('need {} models to get total dz {}'.fromat(nmodel, dz_total))
     #--------------------------------------------
+
+    model, res = forward_model.model_readin(taufile=file)
+
 
     for SN in [35, 70, 100]:
         print('running for SN', SN)
