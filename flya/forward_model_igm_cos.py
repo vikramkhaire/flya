@@ -66,9 +66,9 @@ def run_forward (simname, outfileFirstName = 'igm', zsim =0.1, dz_total = 1):
     cosmo = FlatLambdaCDM(H0=100.0 * h, Om0=OmegaM, Ob0=OmegaB)
     hubblez = cosmo.H(z)
     distance = Lbox / h
-    dz = ((distance / ncell) * hubblez / c).value
+    dz = (distance * hubblez / c).value # total dz across one side of the sim
 
-    nmodel = int(dz_total//dz +1)
+    nmodel = int(dz_total//dz  +1)
     print ('need {} models to get total dz {}'.format(nmodel, dz_total))
     #--------------------------------------------
 
