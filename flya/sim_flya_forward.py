@@ -20,18 +20,26 @@ def Hz_flat(O_m, O_lambda, H0, z = 0.1):
 def get_tau_avg (beta, forward_file, tau_limits):
 
     # read tau data
-    data = tab.Table.read(forward_file, hdu = 2)
+    data = tab.Table.read(forward_file)
+
+    # fwd model
     flux  = data['Flux']
     flux [flux< 0.02] = 0.018 # since -ln (0.018) ~4
     tau = -np.log(flux)
-
     # sort
     tau[tau<tau_limits[0]] = 0
     tau[tau>tau_limits[1]] = tau_limits[1]
-
     tau_avg = np.mean(tau**(1/beta))
 
-    return tau_avg
+    # no noise no LSF
+    flux  = data['Flux_nonoise_infres']
+    tau = -np.log(flux)
+    # sort
+    tau[tau<tau_limits[0]] = 0
+    tau[tau>tau_limits[1]] = tau_limits[1]
+    tau_avg_perfect = np.mean(tau**(1/beta))
+
+    return tau_avg, tau_avg_perfect
 
 
 
@@ -91,16 +99,19 @@ def diffuse_lya_fraction_forward(taufile, forward_file, Gamma_HI = None, simname
     # note the recombination coeffient has been taken to scale with T^{-0.7}
     beta = 2 - 0.7 * (gamma - 1)
 
-    tau_avg  = get_tau_avg(beta=beta, forward_file=forward_file, tau_limits=tau_limits)
+    tau_avg, tau_avg_perfect  = get_tau_avg(beta=beta, forward_file=forward_file, tau_limits=tau_limits)
 
 
     #formula
     hz, hz_100 = Hz_flat(O_m = O_m, O_lambda = O_lambda, H0 = H0, z=z)
     fLya = (Gamma_HI*hz/(A*kHe))**0.5 * tau_avg**(beta/2) *(T0/10000)**(0.35) / ( O_bh2 * (1-y_p) * (1+z)**3 )
 
+    fLya_perfect = (Gamma_HI*hz/(A*kHe))**0.5 * tau_avg_perfect**(beta/2) *(T0/10000)**(0.35) / ( O_bh2 * (1-y_p) * (1+z)**3 )
+
+
     print(fLya, tau_avg, taufile)
 
-    return fLya
+    return fLya, fLya_perfect
 
 """
 
@@ -141,5 +152,5 @@ tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000
 SN =100
 fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
 
-flya = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
-print(flya, 'TNG')
+flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
+print(flya, flya_perfect, 'TNG')
