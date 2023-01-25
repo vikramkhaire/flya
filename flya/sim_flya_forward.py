@@ -30,7 +30,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
     # read tau data
     data = tab.Table.read(forward_file)
 
-    if dz_limit is not None:
+    if dz_limit is None:
         # fwd model
         flux = data['Flux']
         flux[flux < 0.0] = 0.0001  # a lower value
