@@ -33,7 +33,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
     if dz_limit is None:
         # fwd model
         flux = data['Flux']
-        flux[flux < 0.0] = 0.0001  # a lower value
+        flux[flux < 1e-4] = 0.0001  # a lower value
         tau = -np.log(flux)
         # sort
         tau[tau < tau_limits[0]] = 0
@@ -44,7 +44,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
         max_ind = int(len(data)* dz_limit)
         flux = data['Flux'][:max_ind+1]
 
-        flux[flux < 0.0] = 0.0001  # a lower value
+        flux[flux < 1e-4] = 0.0001  # a lower value
         tau = -np.log(flux)
         # sort
         tau[tau < tau_limits[0]] = 0
@@ -67,7 +67,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
                 new_flux.append(flux[i])
 
             new_flux = np.concatenate(new_flux).flat
-            new_flux[new_flux < 0.0] = 0.0001  # a lower value
+            new_flux[new_flux < 1e-4] = 0.0001  # a lower value
             tau = -np.log(new_flux)
             # sort
             tau[tau < tau_limits[0]] = 0
