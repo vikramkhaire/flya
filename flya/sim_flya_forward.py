@@ -58,6 +58,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
             max_ind = int(len(data) * dz_limit)
         else:
             max_ind = int(len(data) * 0.1)
+        print(max_ind)
 
         boot_means = []
         for _ in range(100):
