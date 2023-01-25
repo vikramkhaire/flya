@@ -42,7 +42,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
 
     else:
         max_ind = int(len(data)* dz_limit)
-        flux = data['Flux'][:dz_limi+1]
+        flux = data['Flux'][:dz_limit+1]
 
         flux[flux < 0.0] = 0.0001  # a lower value
         tau = -np.log(flux)
