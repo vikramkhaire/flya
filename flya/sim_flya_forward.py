@@ -90,7 +90,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
 
 
 
-def diffuse_lya_fraction_forward(taufile, forward_file, Gamma_HI = None, simname = 'tng', tau_def = 'Dave'):
+def diffuse_lya_fraction_forward(taufile, forward_file, dz_limit,  Gamma_HI = None, simname = 'tng', tau_def = 'Dave'):
 
     if tau_def == 'Dave':
         tau_limits = [0.03, 4]
@@ -146,7 +146,8 @@ def diffuse_lya_fraction_forward(taufile, forward_file, Gamma_HI = None, simname
     # note the recombination coeffient has been taken to scale with T^{-0.7}
     beta = 2 - 0.7 * (gamma - 1)
 
-    tau_avg, tau_avg_perfect, bootmean, boot_std  = get_tau_avg(beta=beta, forward_file=forward_file, tau_limits=tau_limits)
+    tau_avg, tau_avg_perfect, bootmean, boot_std  = get_tau_avg(beta=beta, forward_file=forward_file,
+                                                                tau_limits=tau_limits, dz_limit=dz_limit)
 
 
     #formula
@@ -173,7 +174,7 @@ tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000
 
 for SN in SN_array:
     fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
-    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
+    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=0.5)
     print(flya, flya_perfect, mean, std, sim, 'SN', SN)
 
 
@@ -184,5 +185,5 @@ tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000
 
 for SN in SN_array:
     fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
-    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
+    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=0.5)
     print(flya, flya_perfect, mean, std, sim, 'SN', SN)
