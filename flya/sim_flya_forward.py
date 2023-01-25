@@ -66,6 +66,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
             for i in bootsample:
                 new_flux.append(flux[i])
 
+            new_flux[new_flux < 0.0] = 0.0001  # a lower value
             tau = -np.log(new_flux)
             # sort
             tau[tau < tau_limits[0]] = 0
