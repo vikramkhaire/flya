@@ -58,7 +58,6 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
             max_ind = int(len(data) * dz_limit)
         else:
             max_ind = int(len(data) * 0.1)
-        print(max_ind)
 
         boot_means = []
         for _ in range(100):
@@ -86,6 +85,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
     tau[tau<tau_limits[0]] = 0
     tau[tau>tau_limits[1]] = tau_limits[1]
     tau_avg_perfect = np.mean(tau**(1/beta))
+    print(tau_avg**(beta/2), tau_avg_perfect**(beta/2), bootmean, bootmean_std)
 
     return tau_avg, tau_avg_perfect, bootmean, bootmean_std
 
