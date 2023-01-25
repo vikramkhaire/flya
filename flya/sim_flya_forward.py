@@ -70,7 +70,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
             # sort
             tau[tau < tau_limits[0]] = 0
             tau[tau > tau_limits[1]] = tau_limits[1]
-            tau_avg = np.mean(tau ** (1 / beta))
+            tau_avg = (np.mean(tau ** (1 / beta)))**(beta/2)
             boot_means.append(tau_avg)
 
         bootmean = np.mean(boot_means)
@@ -146,19 +146,20 @@ def diffuse_lya_fraction_forward(taufile, forward_file, Gamma_HI = None, simname
     # note the recombination coeffient has been taken to scale with T^{-0.7}
     beta = 2 - 0.7 * (gamma - 1)
 
-    tau_avg, tau_avg_perfect  = get_tau_avg(beta=beta, forward_file=forward_file, tau_limits=tau_limits)
+    tau_avg, tau_avg_perfect, bootmean, boot_std  = get_tau_avg(beta=beta, forward_file=forward_file, tau_limits=tau_limits)
 
 
     #formula
     hz, hz_100 = Hz_flat(O_m = O_m, O_lambda = O_lambda, H0 = H0, z=z)
-    fLya = (Gamma_HI*hz/(A*kHe))**0.5 * tau_avg**(beta/2) *(T0/10000)**(0.35) / ( O_bh2 * (1-y_p) * (1+z)**3 )
 
+    fLya = (Gamma_HI*hz/(A*kHe))**0.5 * tau_avg**(beta/2) *(T0/10000)**(0.35) / ( O_bh2 * (1-y_p) * (1+z)**3 )
     fLya_perfect = (Gamma_HI*hz/(A*kHe))**0.5 * tau_avg_perfect**(beta/2) *(T0/10000)**(0.35) / ( O_bh2 * (1-y_p) * (1+z)**3 )
 
-
+    fLya_mean = (Gamma_HI*hz/(A*kHe))**0.5 * bootmean *(T0/10000)**(0.35) / ( O_bh2 * (1-y_p) * (1+z)**3 )
+    fLya_std = (Gamma_HI*hz/(A*kHe))**0.5 * boot_std *(T0/10000)**(0.35) / ( O_bh2 * (1-y_p) * (1+z)**3 )
     #print(fLya, tau_avg, taufile)
 
-    return fLya, fLya_perfect
+    return fLya, fLya_perfect, fLya_mean, fLya_std
 
 
 
@@ -172,8 +173,8 @@ tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000
 
 for SN in SN_array:
     fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
-    flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
-    print(flya, flya_perfect, sim, 'SN', SN)
+    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
+    print(flya, flya_perfect, mean, std, sim, 'SN', SN)
 
 
 sim = 'ill'
@@ -183,5 +184,5 @@ tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000
 for SN in SN_array:
     fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
     flya, flya_perfect = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
-    print(flya, flya_perfect, sim, 'SN', SN)
+    print(flya, flya_perfect, sim,  mean, std,'SN', SN)
 
