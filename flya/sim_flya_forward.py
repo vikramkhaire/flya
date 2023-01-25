@@ -66,6 +66,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
             for i in bootsample:
                 new_flux.append(flux[i])
 
+            new_flux = np.concatenate(new_flux).flat
             new_flux[new_flux < 0.0] = 0.0001  # a lower value
             tau = -np.log(new_flux)
             # sort
@@ -86,7 +87,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
     tau[tau<tau_limits[0]] = 0
     tau[tau>tau_limits[1]] = tau_limits[1]
     tau_avg_perfect = np.mean(tau**(1/beta))
-    print(tau_avg**(beta/2), tau_avg_perfect**(beta/2), bootmean, bootmean_std)
+    #print(tau_avg**(beta/2), tau_avg_perfect**(beta/2), bootmean, bootmean_std)
 
     return tau_avg, tau_avg_perfect, bootmean, bootmean_std
 
