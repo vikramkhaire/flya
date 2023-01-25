@@ -17,19 +17,65 @@ def Hz_flat(O_m, O_lambda, H0, z = 0.1):
     return hz, hz_100
 
 
-def get_tau_avg (beta, forward_file, tau_limits):
+def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = True):
+    """
+    :param beta:
+    :param forward_file:
+    :param tau_limits:
+    :param dz_limit:  a fraction of total dz (i.e 0.1 is 10%)
+    :param find_error:
+    :return:
+    """
 
     # read tau data
     data = tab.Table.read(forward_file)
 
-    # fwd model
-    flux  = data['Flux']
-    flux [flux< 0.0] = 0.0001 # a lower value
-    tau = -np.log(flux)
-    # sort
-    tau[tau<tau_limits[0]] = 0
-    tau[tau>tau_limits[1]] = tau_limits[1]
-    tau_avg = np.mean(tau**(1/beta))
+    if dz_limit is not None:
+        # fwd model
+        flux = data['Flux']
+        flux[flux < 0.0] = 0.0001  # a lower value
+        tau = -np.log(flux)
+        # sort
+        tau[tau < tau_limits[0]] = 0
+        tau[tau > tau_limits[1]] = tau_limits[1]
+        tau_avg = np.mean(tau ** (1 / beta))
+
+    else:
+        max_ind = int(len(data)* dz_limit)
+        flux = data['Flux'][:dz_limi+1]
+
+        flux[flux < 0.0] = 0.0001  # a lower value
+        tau = -np.log(flux)
+        # sort
+        tau[tau < tau_limits[0]] = 0
+        tau[tau > tau_limits[1]] = tau_limits[1]
+        tau_avg = np.mean(tau ** (1 / beta))
+
+    if find_error:
+        flux = data['Flux']
+
+        if dz_limit is not None:
+            max_ind = int(len(data) * dz_limit)
+        else:
+            max_ind = int(len(data) * 0.1)
+
+        boot_means = []
+        for _ in range(100):
+            bootsample = np.random.choice(len(data), size=max_ind, replace=True)
+            new_flux = []
+            for i in bootsample:
+                new_flux.append(flux[i])
+
+            tau = -np.log(new_flux)
+            # sort
+            tau[tau < tau_limits[0]] = 0
+            tau[tau > tau_limits[1]] = tau_limits[1]
+            tau_avg = np.mean(tau ** (1 / beta))
+            boot_means.append(tau_avg)
+
+        bootmean = np.mean(boot_means)
+        bootmean_std = np.std(boot_means)
+
 
     # no noise no LSF
     flux  = data['Flux_nonoise_infres']
@@ -40,7 +86,7 @@ def get_tau_avg (beta, forward_file, tau_limits):
     tau[tau>tau_limits[1]] = tau_limits[1]
     tau_avg_perfect = np.mean(tau**(1/beta))
 
-    return tau_avg, tau_avg_perfect
+    return tau_avg, tau_avg_perfect, bootmean, bootmean_std
 
 
 
