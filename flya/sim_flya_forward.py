@@ -70,8 +70,8 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
             # sort
             tau[tau < tau_limits[0]] = 0
             tau[tau > tau_limits[1]] = tau_limits[1]
-            tau_avg = (np.mean(tau ** (1 / beta)))**(beta/2)
-            boot_means.append(tau_avg)
+            tau_avg_boot = (np.mean(tau ** (1 / beta)))**(beta/2)
+            boot_means.append(tau_avg_boot)
 
         bootmean = np.mean(boot_means)
         bootmean_std = np.std(boot_means)
@@ -186,4 +186,3 @@ for SN in SN_array:
     fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
     flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file)
     print(flya, flya_perfect, mean, std, sim, 'SN', SN)
-    
