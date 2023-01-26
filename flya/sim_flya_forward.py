@@ -42,6 +42,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
 
     else:
         max_ind = int(len(data)* dz_limit)
+        print(max_ind, '# number of qsos')
         flux = data['Flux'][:max_ind+1]
 
         flux[flux < 1e-4] = 0.0001  # a lower value
@@ -60,7 +61,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
             max_ind = int(len(data) * 0.1)
 
         boot_means = []
-        for _ in range(100):
+        for _ in range(1000):
             bootsample = np.random.choice(len(data), size=max_ind, replace=True)
             new_flux = []
             for i in bootsample:
@@ -177,7 +178,7 @@ tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000
 
 for SN in SN_array:
     fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
-    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=None)
+    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=0.1)
     print(flya, flya_perfect, mean, std, sim, 'SN', SN)
 
 
@@ -188,5 +189,5 @@ tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000
 
 for SN in SN_array:
     fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
-    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=None)
+    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=0.1)
     print(flya, flya_perfect, mean, std, sim, 'SN', SN)
