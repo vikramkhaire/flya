@@ -42,11 +42,20 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
 
     else:
         max_ind = int(len(data)* dz_limit)
-        print(max_ind, '# number of qsos')
-        flux = data['Flux'][:max_ind+1]
+        #print(max_ind, '# number of qsos')
 
-        flux[flux < 1e-4] = 0.0001  # a lower value
-        tau = -np.log(flux)
+        flux = data['Flux']
+
+        random_sample = np.random.choice(len(data), size=max_ind, replace=False)
+        new_flux = []
+        for i in random_sample:
+            new_flux.append(flux[i])
+
+        new_flux = np.concatenate(new_flux).flat
+
+
+        new_flux[new_flux < 1e-4] = 0.0001  # a lower value
+        tau = -np.log(new_flux)
         # sort
         tau[tau < tau_limits[0]] = 0
         tau[tau > tau_limits[1]] = tau_limits[1]
