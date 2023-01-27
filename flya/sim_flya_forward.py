@@ -18,7 +18,7 @@ def Hz_flat(O_m, O_lambda, H0, z = 0.1):
 
 
 def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = True, seed = 42):
-    np.randm.seed(seed)
+    np.random.seed(seed)
 
     """
     :param beta:
