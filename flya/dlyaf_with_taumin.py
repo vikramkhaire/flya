@@ -41,7 +41,7 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
     cosmo = tab.Table.read(taufile, hdu = 1)
 
     z = cosmo['z'][0]
-    print('z', z)
+    #print('z', z)
     O_m = cosmo['Om0'][0]
     O_lambda = cosmo['Ode0'][0]
     h = cosmo['lit_h'] [0]
@@ -96,7 +96,7 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
 
 def prep_input(taufile, Gamma12,  simname, z_data = 0.03):
     print('for', simname, 'Gamma_12', Gamma12)
-    tau_array = np.arange(51)*0.001
+    tau_array = np.arange(91)*0.001
 
     # tau max = 4
     taumax= 4
