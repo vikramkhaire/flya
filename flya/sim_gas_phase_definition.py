@@ -51,6 +51,6 @@ def prep_input(ovt_file, simname):
 tng_ovt = '/mnt/quasar/vikram/Illustris_z003/igm/ran_skewers_z003_random_OVT_tau.fits'
 prep_input(ovt_file=tng_ovt, simname= 'tng')
 
-ill_ovt = '/mnt/quasar/vikram/Illustris_z0031/old/igm/ran_skewers_z003_random_OVT_tau.fits'
+ill_ovt = '/mnt/quasar/vikram/Illustris_z003/old/igm/ran_skewers_z003_random_OVT_tau.fits'
 prep_input(ovt_file=ill_ovt, simname= 'ill')
 
