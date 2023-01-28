@@ -11,7 +11,6 @@ ILL = 0.23242597144345933
 
 -------- the code run output
 In [1]: run sim_gas_phase_definition.py                                                                                                                                                                     
-
 /mnt/quasar/vikram/Illustris_z01/max_skewers_cut/igm/ran_skewers_z01_random_OVT.fits
 Dave defination (Delta < 120, T< 1e5)
 rho-T 120 100000.0 0.392564210855228 WHIM
@@ -34,7 +33,60 @@ rho-T 1000 100000.0 0.6366642468544353 WHIM
 rho-T 1000 100000.0 0.2558800721245848 diffuse-Lya
 0.10056441800905659 condensed
 0.006891263011921684 hot-halo
+
+********************************************************
+z=0.03
+
+Diffuse Lyman alpha fraction for Shull and Smith defination (Delta < 1000, T< 1e5):
+TNG = 0.3882154260965749
+ILL = 0.2421547492733484
+
+Diffuse Lyman alpha fraction for Dave defination (Delta < 120, T< 1e5):
+TNG = 0.3759719791811993
+ILL = 0.22038954375541137
+
+-------- the code run output
+In [1]: run sim_gas_phase_definition.py                                                                                                                                                                     
+/mnt/quasar/vikram/Illustris_z003/igm/ran_skewers_z003_random_OVT_tau.fits
+Dave defination (Delta < 120, T< 1e5)
+rho-T 120 100000.0 0.3930698772991164 WHIM
+rho-T 120 100000.0 0.3759719791811993 diffuse-Lya
+0.0320529963517815 condensed
+0.19890514716790678 hot-halo
+Smith & Shull definition (Delta < 1000, T< 1e5)
+rho-T 1000 100000.0 0.532067889827664 WHIM
+rho-T 1000 100000.0 0.3882154260965749 diffuse-Lya
+0.019809549436410327 condensed
+0.05990713463935929 hot-halo
+/mnt/quasar/vikram/Illustris_z003/old/igm/ran_skewers_z003_random_OVT_tau.fits
+Dave defination (Delta < 120, T< 1e5)
+rho-T 120 100000.0 0.6271190823023026 WHIM
+rho-T 120 100000.0 0.22038954375541137 diffuse-Lya
+0.12437142082557183 condensed
+0.028119952519523674 hot-halo
+Smith & Shull definition (Delta < 1000, T< 1e5)
+rho-T 1000 100000.0 0.6493462267700947 WHIM
+rho-T 1000 100000.0 0.2421547492733484 diffuse-Lya
+0.1026062153076343 condensed
+0.005892808051730107 hot-halo
 =========================================================================
+
+====================z =0.03 below ==========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+====================== z=0.1 below==============================================
+
 For Dave's definition (delta < 120 T<1e5), tam_min 0.02 gives flya less than 0.5% (tng), less than 2.3% (ill)
 For Smith's definition (delta < 1000 T<1e5), tam_min 0.015 gives flya less than 0.4% (tng), less than 1% (ill)
 
