@@ -63,7 +63,7 @@ def diffuse_lya_fraction(taufile, Gamma_HI = None, simname = 'tng', tau_limits =
             T0 = 3888  # K
             gamma = 1.55
 
-    if z_data = 0.1:
+    if z_data == 0.1:
         if simname=='tng':
             T0 = 4010  # K
             gamma = 1.527
