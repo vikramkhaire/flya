@@ -4,19 +4,31 @@ import numpy as np
 import astropy.table as tab
 from scipy.interpolate import interp1d
 
-def find_dlyaf(simname, mintau_file):
+def find_dlyaf(simname, mintau_file, z=0.03):
 
     taumin_dave = 0.03
     taumin_smith = 0.015
 
+    # refer to notes
+    if z ==0.03:
+        if simname=='tng':
+            dlyaf_dave = 0.3759719791811993
+            dlyaf_smith = 0.3882154260965749
 
-    if simname == 'tng':
-        dlyaf_dave = 0.3846925721047914
-        dlyaf_smith = 0.397219265153281
+        if simname=='ill':
+            dlyaf_dave = 0.22038954375541137
+            dlyaf_smith = 0.2421547492733484
 
-    if simname == 'ill':
-        dlyaf_dave = 0.23242597144345933
-        dlyaf_smith = 0.2558800721245848
+    if z == 0.1:
+        if simname=='tng':
+            dlyaf_dave = 0.3846925721047914
+            dlyaf_smith = 0.397219265153281
+
+        if simname=='ill':
+            dlyaf_dave = 0.23242597144345933
+            dlyaf_smith = 0.2558800721245848
+
+
 
     data = tab.Table.read(mintau_file)
 
@@ -33,15 +45,27 @@ def find_dlyaf(simname, mintau_file):
 
 
 
-def find_mintau(simname, mintau_file):
+def find_mintau(simname, mintau_file, z=0.03):
 
-    if simname == 'tng':
-        dlyaf_dave = 0.3846925721047914
-        dlyaf_smith = 0.397219265153281
+    # refer to notes
+    if z==0.03:
+        if simname=='tng':
+            dlyaf_dave = 0.3759719791811993
+            dlyaf_smith = 0.3882154260965749
 
-    if simname == 'ill':
-        dlyaf_dave = 0.23242597144345933
-        dlyaf_smith = 0.2558800721245848
+        if simname=='ill':
+            dlyaf_dave = 0.22038954375541137
+            dlyaf_smith = 0.2421547492733484
+
+    if z==0.1:
+        if simname=='tng':
+            dlyaf_dave = 0.3846925721047914
+            dlyaf_smith = 0.397219265153281
+
+        if simname=='ill':
+            dlyaf_dave = 0.23242597144345933
+            dlyaf_smith = 0.2558800721245848
+
 
     data = tab.Table.read(mintau_file)
 
