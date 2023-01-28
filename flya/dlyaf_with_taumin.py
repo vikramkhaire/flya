@@ -130,7 +130,7 @@ zstr = 'z003'
 seed = 1
 
 simname = 'ill'
-path = '/mnt/quasar/vikram/Illustris_z01/old_Illustris/get_Gamma_HI'
+path = '/mnt/quasar/vikram/Illustris_z003/old/get_Gamma_HI'
 
 taufile = path + '/' +'ran_skewers_'+zstr+'_random_OVT_tau_Gamma_0.01000_Nran_010000_seed_{}.fits'.format(seed)
 prep_input(taufile= taufile, Gamma12= 0.004, simname= simname, z_data=z_data)
