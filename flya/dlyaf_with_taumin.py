@@ -132,31 +132,16 @@ seed = 1
 simname = 'ill'
 path = '/mnt/quasar/vikram/Illustris_z003/old/get_Gamma_HI'
 
-taufile = path + '/' +'ran_skewers_'+zstr+'_random_OVT_tau_Gamma_0.01000_Nran_010000_seed_{}.fits'.format(seed)
-prep_input(taufile= taufile, Gamma12= 0.004, simname= simname, z_data=z_data)
-
-taufile = path + '/' +'ran_skewers_'+zstr+'_random_OVT_tau_Gamma_0.05000_Nran_010000_seed_{}.fits'.format(seed)
-prep_input(taufile= taufile, Gamma12= 0.007, simname= simname, z_data=z_data)
-
-taufile = path + '/' +'ran_skewers_'+zstr+'_random_OVT_tau_Gamma_0.07500_Nran_010000_seed_{}.fits'.format(seed)
-prep_input(taufile= taufile, Gamma12= 0.04, simname= simname, z_data=z_data)
-
-taufile = path + '/' +'ran_skewers_'+zstr+'_random_OVT_tau_Gamma_0.10000_Nran_010000_seed_{}.fits'.format(seed)
-prep_input(taufile= taufile, Gamma12= 0.07, simname= simname, z_data=z_data)
+Gamma_array = [0.004, 0.007, 0.04, 0.07]
+for Gamma_12 in Gamma_array:
+    taufile = path + '/' + 'ran_skewers_' + zstr + '_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_{}.fits'.format(Gamma_12, seed)
+    prep_input(taufile=taufile, Gamma12=Gamma_12, simname=simname, z_data=z_data)
 
 
 simname = 'tng'
 path = '/mnt/quasar/vikram/Illustris_z003/get_Gamma_HI'
 
-taufile = path + '/' +'ran_skewers_'+zstr+'_random_OVT_tau_Gamma_0.01000_Nran_010000_seed_{}.fits'.format(seed)
-prep_input(taufile= taufile, Gamma12= 0.004, simname= simname, z_data=z_data)
-
-taufile = path + '/' +'ran_skewers_'+zstr+'_random_OVT_tau_Gamma_0.05000_Nran_010000_seed_{}.fits'.format(seed)
-prep_input(taufile= taufile, Gamma12= 0.007, simname= simname, z_data=z_data)
-
-taufile = path + '/' +'ran_skewers_'+zstr+'_random_OVT_tau_Gamma_0.07500_Nran_010000_seed_{}.fits'.format(seed)
-prep_input(taufile= taufile, Gamma12= 0.04, simname= simname, z_data=z_data)
-
-taufile = path + '/' +'ran_skewers_'+zstr+'_random_OVT_tau_Gamma_0.10000_Nran_010000_seed_{}.fits'.format(seed)
-prep_input(taufile= taufile, Gamma12= 0.07, simname= simname, z_data=z_data)
+for Gamma_12 in Gamma_array:
+    taufile = path + '/' + 'ran_skewers_' + zstr + '_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_{}.fits'.format(Gamma_12, seed)
+    prep_input(taufile=taufile, Gamma12=Gamma_12, simname=simname, z_data=z_data)
 
