@@ -146,4 +146,10 @@ For Smith defination tau_min = 0.015  (less than 2% for illustris, 2.4 % for tng
 
 TODO : Repeat above analysis for z= 0.03
 Check with few Nyx simulations 
+ ------------------- done!-------------
+
+at z =0.03
+taumin_dave = 0.02 (less than 2 % difference in tng and 2.6% in ill)
+taumin_smith = 0.015 (less than 2.5 % difference in tng and 1.3% in ill)
+
 """
