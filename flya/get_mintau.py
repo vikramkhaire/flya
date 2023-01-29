@@ -6,8 +6,8 @@ from scipy.interpolate import interp1d
 
 def find_dlyaf(simname, mintau_file, z=0.03):
 
-    taumin_dave = 0.03
-    taumin_smith = 0.015
+    taumin_dave = 0.02
+    #taumin_smith = 0.015
 
     # refer to notes
     if z ==0.03:
@@ -34,11 +34,11 @@ def find_dlyaf(simname, mintau_file, z=0.03):
 
     f = interp1d( data['taumin'], data['frac'])
 
-    #frac_dave_est =  f(taumin_dave)
-    #print(dlyaf_dave, frac_dave_est, 'diff = ', (frac_dave_est-dlyaf_dave)*100)
+    frac_dave_est =  f(taumin_dave)
+    print(dlyaf_dave, frac_dave_est, 'diff = ', (frac_dave_est-dlyaf_dave)*100)
 
-    frac_smith_est = f(taumin_smith)
-    print(dlyaf_smith, frac_smith_est, 'diff = ', (frac_smith_est-dlyaf_smith)*100)
+    #frac_smith_est = f(taumin_smith)
+    #print(dlyaf_smith, frac_smith_est, 'diff = ', (frac_smith_est-dlyaf_smith)*100)
 
 
     return #frac_smith_est, frac_smith_est
@@ -112,19 +112,18 @@ def prep_input_z003(simname):
 
     Gamma_12_list = [0.007, 0.04, 0.07]
 
-
-    for taumax in [4, 5]:
+    """
+        for taumax in [4, 5]:
         for Gamma12 in Gamma_12_list:
             # tau max = 4
             file_name = path + '/' + 'taumin_{}_Gamma_{:0.3f}_taumax_{:0.0f}_z_{:0.02f}.fits'.format(simname, Gamma12, taumax, z)
             dave, smith = find_mintau(simname=simname, mintau_file=file_name, z=z)
 
             print('taumin', dave, smith, 'Gamma12=', Gamma12, 'taumax = ', taumax)
+    """
 
-
-  
     # -------- for validataion
-    for taumax in [4, 5]:
+    for taumax in [4]: #, 5]:
         for Gamma12 in Gamma_12_list:
             # tau max = 4
             file_name = path + '/' + 'taumin_{}_Gamma_{:0.3f}_taumax_{:0.0f}_z_{:0.02f}.fits'.format(simname, Gamma12, taumax, z)
