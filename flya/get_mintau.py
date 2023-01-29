@@ -77,7 +77,7 @@ def find_mintau(simname, mintau_file, z=0.03):
     return tau_min_dave, tau_min_smith
 
 
-def prep_input(simname):
+def prep_input_z01(simname):
     print('for', simname)
     path = '/home/vikram/flya/flya/data'
 
@@ -102,10 +102,43 @@ def prep_input(simname):
 
     return
 
-prep_input('tng')
-prep_input('ill')
+
+
+def prep_input_z003(simname):
+
+    z = 0.03
+    print('for', simname)
+    path = '/home/vikram/flya/flya/data'
+
+    Gamma_12_list = [0.007, 0.04, 0.07]
+
+
+    for taumax in [4, 5]:
+        for Gamma12 in Gamma_12_list:
+            # tau max = 4
+            file_name = path + '/' + 'taumin_{}_Gamma_{:0.3f}_taumax_{:0.0f}_z_{:0.02f}.fits'.format(simname, Gamma12, taumax, z)
+            dave, smith = find_mintau(simname=simname, mintau_file=file_name, z=z)
+
+            print('taumin', dave, smith, 'Gamma12=', Gamma12, 'taumax = ', taumax)
+
+
+  
+    # -------- for validataion
+    for taumax in [4, 5]:
+        for Gamma12 in Gamma_12_list:
+            # tau max = 4
+            file_name = path + '/' + 'taumin_{}_Gamma_{:0.3f}_taumax_{:0.0f}_z_{:0.02f}.fits'.format(simname, Gamma12, taumax, z)
+            find_dlyaf(simname=simname, mintau_file=file_name, z=0.03)
+            
+
+
+    return
+
+prep_input_z003('tng')
+prep_input_z003('ill')
 
 """
+at z= 0.1
 taumin_dave = 0.03
 taumin_smith = 0.015
 These are final values so that
