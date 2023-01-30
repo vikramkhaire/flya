@@ -5,7 +5,7 @@ import astropy.units as u
 import astropy.table as tab
 
 #---- function to calculte the H(z)
-def Hz_flat(O_m, O_lambda, H0, z = 0.1):
+def Hz_flat(O_m, O_lambda, H0, z = 0.03):
     """
     H0 in std units km/s/Mpc
     """
@@ -105,14 +105,19 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
 
 
 
-def diffuse_lya_fraction_forward(taufile, forward_file, dz_limit,  Gamma_HI = None, simname = 'tng', tau_def = 'Dave'):
+def diffuse_lya_fraction_forward(taufile, forward_file, dz_limit,  Gamma_HI = None, simname = 'tng', tau_def = 'Dave', z_data = 0.03):
 
-    if tau_def == 'Dave':
-        tau_limits = [0.03, 4]
-        #print('Assuming Dave et al 2010 definitoin')
-    else: # Smith
-        tau_limits = [0.015, 4]
-        #print('Assuming Shull and Smith definition')
+    if z_data == 0.1:
+        if tau_def=='Dave':
+            tau_limits = [0.03, 4]
+            # print('Assuming Dave et al 2010 definitoin')
+        else:  # Smith
+            tau_limits = [0.015, 4]
+            # print('Assuming Shull and Smith definition')
+
+    if z_data == 0.03:
+        tau_limits = [0.02, 4]
+
 
     # constants
     e = 4.8032e-10  # in esu
@@ -151,12 +156,22 @@ def diffuse_lya_fraction_forward(taufile, forward_file, dz_limit,  Gamma_HI = No
         Gamma_HI = 1e-12* cosmo['GAMMA'][0]
     #print('Gamma_HI', Gamma_HI, 'Obh2', O_bh2, 'yp', y_p, 'lambda', O_lambda)
 
-    if simname == 'tng':
-        T0 = 4038  # K
-        gamma = 1.53
-    if simname == 'ill':
-        T0 = 4239  # K
-        gamma = 1.57
+
+    if z_data==0.03:
+        if simname=='tng':
+            T0 =  3852 # K
+            gamma = 1.53
+        if simname=='ill':
+            T0 = 3888  # K
+            gamma = 1.55
+
+    if z_data == 0.1:
+        if simname=='tng':
+            T0 = 4010  # K
+            gamma = 1.527
+        if simname=='ill':
+            T0 = 4231  # K
+            gamma = 1.56
 
     # note the recombination coeffient has been taken to scale with T^{-0.7}
     beta = 2 - 0.7 * (gamma - 1)
@@ -179,6 +194,8 @@ def diffuse_lya_fraction_forward(taufile, forward_file, dz_limit,  Gamma_HI = No
 
 
 
+# for z =0.1
+"""
 Gamma_12 = 0.05
 SN_array = np.arange(21)*5+30
 
@@ -196,6 +213,26 @@ for SN in SN_array:
 sim = 'ill'
 path = '/mnt/quasar/vikram/Illustris_z01/old_Illustris/get_Gamma_HI'
 tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_42.fits'.format(Gamma_12)
+"""
+
+z_data = 0.03
+Gamma_12 = 0.04
+SN_array = np.arange(21)*5+40
+
+
+sim = 'tng'
+path = '/mnt/quasar/vikram/Illustris_z003/get_Gamma_HI'
+tau_file = path + '/' + 'ran_skewers_z003_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_1.fits'.format(Gamma_12)
+
+for SN in SN_array:
+    fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
+    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=0.1)
+    print(flya, flya_perfect, mean, std, sim, 'SN', SN)
+
+
+sim = 'ill'
+path = '/mnt/quasar/vikram/Illustris_z01/old_Illustris/get_Gamma_HI'
+tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_1.fits'.format(Gamma_12)
 
 
 for SN in SN_array:
