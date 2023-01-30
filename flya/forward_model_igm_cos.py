@@ -108,7 +108,7 @@ def run_forward_z01(simname, outfileFirstName = 'igm', zsim =0.1, dz_total = 1):
 
     return
 
-def run_forward_z003(simname, outfileFirstName = 'igm', zsim =0.03, dz_total = 1):
+def run_forward_z003(simname, outfileFirstName = 'igm', zsim =0.03, dz_total = 4):
 
     # constants
     c = const.c.to(u.km / u.s).value
