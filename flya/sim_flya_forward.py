@@ -72,7 +72,7 @@ def get_tau_avg (beta, forward_file, tau_limits, dz_limit = None, find_error = T
             max_ind = int(len(data) * 0.1)
 
         boot_means = []
-        for _ in range(1000):
+        for _ in range(200):
             bootsample = np.random.choice(len(data), size=max_ind, replace=True)
             new_flux = []
             for i in bootsample:
