@@ -217,7 +217,7 @@ tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000
 
 z_data = 0.03
 Gamma_12 = 0.04
-SN_array = np.arange(21)*5+40
+SN_array = np.arange(35)*5+40
 
 
 sim = 'tng'

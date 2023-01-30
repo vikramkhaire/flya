@@ -164,7 +164,7 @@ def run_forward_z003(simname, outfileFirstName = 'igm', zsim =0.03, dz_total = 4
 
     model, res = forward_model.model_readin(taufile=file)
 
-    SN_array = np.arange(21)*5+ 40
+    SN_array = np.arange(35)*5+ 40
     for SN in SN_array:
         print('running for SN', SN)
         model_all_effects, model_in_lengthened_only, res_array, ind = forward_model.forward_model(
