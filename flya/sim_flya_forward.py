@@ -226,7 +226,7 @@ tau_file = path + '/' + 'ran_skewers_z003_random_OVT_tau_Gamma_{:0.5f}_Nran_0100
 
 for SN in SN_array:
     fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
-    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=2)
+    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=0.5)
     print(flya, flya_perfect, mean, std, sim, 'SN', SN)
 
 
@@ -237,5 +237,5 @@ tau_file = path + '/' + 'ran_skewers_z003_random_OVT_tau_Gamma_{:0.5f}_Nran_0100
 
 for SN in SN_array:
     fwd_file = path + '/flya' + '/forward_model_igmSN_{:0.0f}_res_cos_LP1.fits'.format(SN)
-    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=2)
+    flya, flya_perfect, mean, std = diffuse_lya_fraction_forward(taufile=tau_file, forward_file=fwd_file, dz_limit=0.5)
     print(flya, flya_perfect, mean, std, sim, 'SN', SN)
