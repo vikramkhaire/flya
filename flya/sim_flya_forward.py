@@ -231,8 +231,8 @@ for SN in SN_array:
 
 
 sim = 'ill'
-path = '/mnt/quasar/vikram/Illustris_z01/old_Illustris/get_Gamma_HI'
-tau_file = path + '/' + 'ran_skewers_01_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_1.fits'.format(Gamma_12)
+path = '/mnt/quasar/vikram/Illustris_z003/old/get_Gamma_HI'
+tau_file = path + '/' + 'ran_skewers_z003_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_1.fits'.format(Gamma_12)
 
 
 for SN in SN_array:
