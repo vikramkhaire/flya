@@ -133,7 +133,7 @@ def run_forward_z003(simname, outfileFirstName = 'igm', zsim =0.03, dz_total = 1
 
     outpath = path + '/get_Gamma_HI'
 
-    file = outpath + '/' + 'ran_skewers_z003_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_42.fits'.format(Gamma_12)
+    file = outpath + '/' + 'ran_skewers_z003_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_1.fits'.format(Gamma_12)
     print('from:', file)
 
     params = tab.Table.read(file, hdu = 1)
