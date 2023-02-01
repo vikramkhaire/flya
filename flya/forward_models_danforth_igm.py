@@ -45,16 +45,12 @@ def do_danforth_fwd_z003(path, Gamma_12, SN =60, nskew = 200):
 
     return
 
-"""
-simname =['tng', 'old']
-pool = mp.Pool(processes=2)
-results = [pool.apply_async(do_danforth_fwd, args=(sim,) ) for sim in simname]
-output = [p.get() for p in results]
-"""
-
 # for tng
 path ='/mnt/quasar/vikram/Illustris_z003/get_Gamma_HI'
 Gamma_12 = 0.04
+#do_danforth_fwd_z003(path= path, Gamma_12 = Gamma_12)
+
+# for ill
+path ='/mnt/quasar/vikram/Illustris_z003/old/get_Gamma_HI'
+Gamma_12 = 0.04
 do_danforth_fwd_z003(path= path, Gamma_12 = Gamma_12)
-
-
