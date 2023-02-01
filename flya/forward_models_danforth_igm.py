@@ -25,7 +25,7 @@ def do_danforth_fwd_z003(path, Gamma_12, SN =60, nskew = 200):
     param = tab.Table.read(modelfile, hdu =1)
     print('expected Gamma_12', Gamma_12, 'in file', param['GAMMA'])
 
-    forward_model_filename = path + '/flya/danforth_sn/forward_model_igm_danforth.fits'
+    forward_model_filename = path + '/flya/danforth_sn/forward_model_igm_danforth_sn_{:.0f}.fits'.foramt(SN)
 
     dirname = os.path.dirname(forward_model_filename)
     if not os.path.exists(dirname):
@@ -37,7 +37,7 @@ def do_danforth_fwd_z003(path, Gamma_12, SN =60, nskew = 200):
     # use nskew = for selecting number of skewers to fit
 
     data, resolution_array, z_qso_array = data_readin.data_readin(
-        use_metalmasking=False, min_z=0.005, max_z=0.06, dataset='COS_data', path=datadir, fill_with_noise=True, use_emissionmasking=True)
+        use_metalmasking=False, min_z=0.005, max_z=0.06, dataset='COS_data', minsn =60, path=datadir, fill_with_noise=True, use_emissionmasking=True)
 
     model_all_effects, model_in_lengthened_only, res_array, ind = forward_model.forward_model(model,data=data, SN = SN, data_resolution=resolution_array)
 
