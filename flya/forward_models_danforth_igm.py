@@ -15,7 +15,7 @@ from pypowerspec import data_readin
 import multiprocessing as mp
 os.nice(10)
 
-def do_danforth_fwd_z003(path, Gamma_12, SN =60, nskew = 200):
+def do_danforth_fwd_z003(path, Gamma_12, SN =60, nskew = 1000):
     datadir = '/mnt/quasar/vikram/Danforth_data/mw_format/'
 
 
@@ -45,12 +45,15 @@ def do_danforth_fwd_z003(path, Gamma_12, SN =60, nskew = 200):
 
     return
 
+# for more qso's
+SN = 34
+
 # for tng
 path ='/mnt/quasar/vikram/Illustris_z003/get_Gamma_HI'
 Gamma_12 = 0.04
-#do_danforth_fwd_z003(path= path, Gamma_12 = Gamma_12)
+do_danforth_fwd_z003(path= path, Gamma_12 = Gamma_12, SN=SN)
 
 # for ill
 path ='/mnt/quasar/vikram/Illustris_z003/old/get_Gamma_HI'
 Gamma_12 = 0.04
-do_danforth_fwd_z003(path= path, Gamma_12 = Gamma_12)
+do_danforth_fwd_z003(path= path, Gamma_12 = Gamma_12, SN=SN)
