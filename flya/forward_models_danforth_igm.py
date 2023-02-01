@@ -25,7 +25,7 @@ def do_danforth_fwd_z003(path, Gamma_12, SN =60, nskew = 200):
     param = tab.Table.read(modelfile, hdu =1)
     print('expected Gamma_12', Gamma_12, 'in file', param['GAMMA'])
 
-    forward_model_filename = path + '/flya/danforth_sn/forward_model_igm_danforth_sn_{:.0f}.fits'.foramt(SN)
+    forward_model_filename = path + '/flya/danforth_sn/forward_model_igm_danforth_sn_{:.0f}.fits'.format(SN)
 
     dirname = os.path.dirname(forward_model_filename)
     if not os.path.exists(dirname):
