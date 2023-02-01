@@ -55,6 +55,6 @@ output = [p.get() for p in results]
 # for tng
 path ='/mnt/quasar/vikram/Illustris_z003/get_Gamma_HI'
 Gamma_12 = 0.04
-do_danforth_fwd_z003()
+do_danforth_fwd_z003(path= path, Gamma_12 = Gamma_12)
 
 
