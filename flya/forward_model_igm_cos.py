@@ -119,15 +119,11 @@ def run_forward_z003(simname, outfileFirstName = 'igm', zsim =0.03, dz_total = 4
     Gamma_12 = 0.04
 
     if simname == 'tng':
-        # simulation file
-        hdf5file = '/mnt/quasar/sims/IllustrisTNG/TG100-1/z01/gadget_format/grid/Ill_TG100-1_z0.10.h5'
-        # path to catalogfile
+
         path = '/mnt/quasar/vikram/Illustris_z003'
 
     if simname == 'ill':
-        # simulation file
-        hdf5file = '/mnt/quasar/sims/Illustris/Illustris1/z0.1/gadget_format/grid/Ill1_z0.10.h5'
-        # path to catalogfile
+
         path = '/mnt/quasar/vikram/Illustris_z003/old'
 
 
