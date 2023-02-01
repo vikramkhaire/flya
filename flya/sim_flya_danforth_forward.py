@@ -61,6 +61,8 @@ def get_tau_avg_data(beta, forward_file, tau_limits,  sightlines = None, find_er
         else:
             print('# of sightlines are more than fwd data')
 
+    # read tau data
+    data = tab.Table.read(forward_file)
     if find_error:
 
         if sightlines is None:
@@ -92,7 +94,8 @@ def get_tau_avg_data(beta, forward_file, tau_limits,  sightlines = None, find_er
         bootmean  = 0
         bootmean_std = 0
 
-
+    # read tau data
+    data = tab.Table.read(forward_file)
     # no noise no LSF
     flux  = data['Flux_nonoise_infres']
     flux [flux< 1e-4] = 0.0001 # a lower value
