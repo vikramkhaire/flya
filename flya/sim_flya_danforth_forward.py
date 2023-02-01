@@ -43,7 +43,7 @@ def get_tau_avg_data(beta, forward_file, tau_limits,  sightlines = None, find_er
         tau_avg = np.mean(tau ** (1 / beta))
 
     else:
-        if sightlines >= len(data):
+        if sightlines <= len(data):
 
             # print(max_ind, '# number of qsos')
 
@@ -57,6 +57,9 @@ def get_tau_avg_data(beta, forward_file, tau_limits,  sightlines = None, find_er
             tau[tau < tau_limits[0]] = 0
             tau[tau > tau_limits[1]] = tau_limits[1]
             tau_avg = np.mean(tau ** (1 / beta))
+
+        else:
+            print('# of sightlines are more than fwd data')
 
     if find_error:
 
