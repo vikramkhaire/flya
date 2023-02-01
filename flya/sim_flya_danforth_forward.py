@@ -208,5 +208,5 @@ path = '/mnt/quasar/vikram/Illustris_z003/get_Gamma_HI'
 tau_file = path + '/' + 'ran_skewers_z003_random_OVT_tau_Gamma_{:0.5f}_Nran_010000_seed_1.fits'.format(Gamma_12)
 fwd_file = path + '/flya/danforth_sn/forward_model_igm_danforth_sn_{:.0f}.fits'.format(SN)
 
-flya, flya_perfect, mean, std = diffuse_lya_fraction_forward_danforth(taufile=tau_file, forward_file=fwd_file, sightlines = 50)
+flya, flya_perfect, mean, std = diffuse_lya_fraction_forward_danforth(taufile=tau_file, forward_file=fwd_file, sightlines = 1)
 print(flya,flya_perfect, mean, std)

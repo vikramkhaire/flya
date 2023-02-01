@@ -41,8 +41,8 @@ def prep_input(ovt_file, simname):
     T = np.array(data['T']).flatten()
     oden = np.array(data['ODEN']).flatten()
 
-    #Teme_list = [5e4, 1e5, 5e5, 1e6, 5e6]
-    Teme_list = [1e5]
+    Teme_list = [5e4, 1e5, 5e5, 1e6, 5e6]
+    #Teme_list = [1e5]
 
 
     for Temp in Teme_list:
