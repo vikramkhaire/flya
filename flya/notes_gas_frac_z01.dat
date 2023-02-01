@@ -72,8 +72,41 @@ rho-T 1000 100000.0 0.2421547492733484 diffuse-Lya
 =========================================================================
 
 ====================z =0.03 below ==========================================
+Rho-T relation at z=0.03
+low den -1.5 high den 1
+file:  /mnt/quasar/vikram/Illustris_z003/old/igm/ran_skewers_z003_random_OVT_tau.fits
+----To, gamma + error array ----> for low den and high den -1.5 1
+T0= 3887.889420172091 gamma 1.5496581567964771
+file:  /mnt/quasar/vikram/Illustris_z003/igm/ran_skewers_z003_random_OVT_tau.fits
+----To, gamma + error array ----> for low den and high den -1.5 1
+T0= 3851.8301060787194 gamma 1.5334318661411146
 
 
+For Dave's definition tau_min = 0.02 is good (less than 2 % difference in tng and 2.6% in ill)
+Gamma_HI were (0.007, 0.04, 0.07)
+And tau_max =4
+
+In [9]: run get_mintau.py
+for tng
+0.3759719791811993 0.3561261898724431 diff =  -1.984578930875619
+0.3759719791811993 0.3690855829919817 diff =  -0.6886396189217603
+0.3759719791811993 0.36463798200207925 diff =  -1.1333997179120037
+for ill
+0.22038954375541137 0.24634385182290458 diff =  2.5954308067493215
+0.22038954375541137 0.22861075144835505 diff =  0.8221207692943683
+0.22038954375541137 0.2211172096497237 diff =  0.07276658943123349
+
+
+For Smith's definition 0.015 is better (less than 2.5 % difference in tng and 1.3% in ill)
+
+for tng
+0.3882154260965749 0.3632346017121496 diff =  -2.498082438442528
+0.3882154260965749 0.37990837833061936 diff =  -0.8307047765955533
+0.3882154260965749 0.3773217610984627 diff =  -1.0893664998112174
+for ill
+0.2421547492733484 0.25464052741987303 diff =  1.2485778146524629
+0.2421547492733484 0.23921472623564938 diff =  -0.29400230376990244
+0.2421547492733484 0.23226730469724324 diff =  -0.9887444576105159
 
 
 
