@@ -50,6 +50,13 @@ def uniform_grid(data, wave_to_grid):
 
     Returns
     """
+    flux = interpolate.interp1d(data['Wave'][i], data['Flux'][i], fill_value = NaN)
+    flux_nonoise = interpolate.interp1d(data['Wave'][i], data['Flux_nonoise'][i])
+    flux_nonoise_infres = interpolate.interp1d(data['Wave'][i], data['Flux_nonoise_infres'][i])
+    data_flux = interpolate.interp1d(data['Wave'][i], data['corresponding_data_flux'][i])
+    noise = interpolate.interp1d(data['Wave'][i], data['Noise'][i])
+    mask = interpolate.interp1d(data['Wave'][i], data['Mask'][i])
+
 
     return uniform_data
 
