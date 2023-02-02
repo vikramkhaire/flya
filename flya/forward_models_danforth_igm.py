@@ -15,7 +15,7 @@ from pypowerspec import data_readin
 import multiprocessing as mp
 os.nice(10)
 
-def do_danforth_fwd_z003(path, Gamma_12, SN =60, nskew = 1000):
+def do_danforth_fwd_z003(path, Gamma_12, SN =60, nskew = 3000):
     datadir = '/mnt/quasar/vikram/Danforth_data/mw_format/'
 
 
