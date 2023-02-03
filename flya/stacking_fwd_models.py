@@ -50,12 +50,28 @@ def uniform_grid(data, wave_to_grid):
 
     Returns
     """
-    flux = interpolate.interp1d(data['Wave'][i], data['Flux'][i], fill_value = NaN)
-    flux_nonoise = interpolate.interp1d(data['Wave'][i], data['Flux_nonoise'][i])
-    flux_nonoise_infres = interpolate.interp1d(data['Wave'][i], data['Flux_nonoise_infres'][i])
-    data_flux = interpolate.interp1d(data['Wave'][i], data['corresponding_data_flux'][i])
-    noise = interpolate.interp1d(data['Wave'][i], data['Noise'][i])
-    mask = interpolate.interp1d(data['Wave'][i], data['Mask'][i])
+
+    # rewrite the data table
+    new_data = tab.Table()
+    for i in range(len(data)):
+        flux = interpolate.interp1d(data['Wave'][i], data['Flux'][i], fill_value=np.nan, bounds_error=False)
+        new_flux = flux(wave_to_grid)
+        flux_nonoise = interpolate.interp1d(data['Wave'][i], data['Flux_nonoise'][i], fill_value=np.nan, bounds_error=False)
+        new_flux_nonoise = flux_nonoise(wave_to_grid)
+        flux_nonoise_infres = interpolate.interp1d(data['Wave'][i], data['Flux_nonoise_infres'][i], fill_value=np.nan, bounds_error=False)
+        new_flux_nonoise_infres = flux_nonoise_infres(wave_to_grid)
+        data_flux = interpolate.interp1d(data['Wave'][i], data['corresponding_data_flux'][i], fill_value=np.nan, bounds_error=False)
+        new_data_flux = data_flux(wave_to_grid)
+        noise = interpolate.interp1d(data['Wave'][i], data['Noise'][i], fill_value=np.nan, bounds_error=False)
+        new_noise = noise(wave_to_grid)
+        mask = interpolate.interp1d(data['Wave'][i], data['Mask'][i], fill_value=-1, bounds_error=False) # -1 for out of bound
+        new_masks = np.array(mask(wave_to_grid), dtype = np.int8)
+        tab_line = tab.Table([wave_to_grid, new_flux, new_noise, new_masks, new_flux_nonoise, new_flux_nonoise_infres, new_data_flux],
+                             names = ('Wave', 'Flux', 'Noise', 'Mask', 'Flux_nonoise', 'Flux_nonoise_infres', 'corresponding_data_flux'))
+        new_data = tab.vstack([new_data, tab_line])
+
+    
+
 
 
     return uniform_data
