@@ -141,6 +141,8 @@ for j in range(min_number_of_objects):
     stack_data_flux =[]
     num_count = []
 
+    # this is for the mean method
+    # TODO code for other methods (median and SN weighted)
     for k in range(len(final_wave)):
         #np.count_nonzero(np.isnan(data))
         stack_wave.append(np.nanmean(data_to_stack['Wave'][:, k]))
@@ -158,4 +160,5 @@ for j in range(min_number_of_objects):
         [stack_wave, stack_flux, stack_noise, new_masks, stack_flux_nonoise, stack_flux_nonoise_infres, stack_data_flux],
         names=('Wave', 'Flux', 'Noise', 'Mask', 'Flux_nonoise', 'Flux_nonoise_infres', 'corresponding_data_flux'))
     new_data = tab.vstack([new_data, tab_line])
+
 
