@@ -54,6 +54,7 @@ def uniform_grid(data, wave_to_grid):
         new_data_flux = data_flux(wave_to_grid)
         noise = interpolate.interp1d(data['Wave'][i], data['Noise'][i], fill_value=np.nan, bounds_error=False)
         new_noise = noise(wave_to_grid)
+        # masks
         mask = interpolate.interp1d(data['Wave'][i], data['Mask'][i], fill_value=-1, bounds_error=False) # -1 for out of bound
         new_masks = np.array(mask(wave_to_grid), dtype = np.int8)
         tab_line = tab.Table([wave_to_grid, new_flux, new_noise, new_masks, new_flux_nonoise, new_flux_nonoise_infres, new_data_flux],
@@ -67,9 +68,11 @@ def uniform_grid(data, wave_to_grid):
 def find_indices(list_to_check, item_to_find):
     array = np.array(list_to_check)
     indices = np.where(array == item_to_find)[0]
+
     return list(indices)
 
 
+#------------- main code --------
 
 filename = 'forward_model_igm_danforth_sn_34.fits'
 d = tab.Table.read (filename)
@@ -124,7 +127,8 @@ print(set_of_indices)
 stacked_data = tab.Table()
 
 for j in range(min_number_of_objects):
-    qso_ind = selected_indices[:, j]     # indices of qso's to stack
+    #qso_ind = selected_indices[:, j]     # indices of qso's to stack
+    qso_ind = set_of_indices[:, j]  # indices of qso's to stack
 
     data = tab.Table()
     # create a data table
@@ -143,6 +147,7 @@ for j in range(min_number_of_objects):
 
     # this is for the mean method
     # TODO code for other methods (median and SN weighted)
+    new_mask_array = []
     for k in range(len(final_wave)):
         #np.count_nonzero(np.isnan(data))
         stack_wave.append(np.nanmean(data_to_stack['Wave'][:, k]))
@@ -154,11 +159,13 @@ for j in range(min_number_of_objects):
         # number of no nan elements
         count = np.count_nonzero(np.isnan(data_to_stack['Wave'][:, k]))
         num_count.append(count)
+        if -1 in data_to_stack['Mask'][:, k]:
+            new_mask_array.append(-1)
+        else:
+            new_mask_array.append(int(np.ceil(np.nanmean(data_to_stack['Mask'][:, k]))))
 
     # find ways to deal with masks () --> fix new_masks
     tab_line = tab.Table(
         [stack_wave, stack_flux, stack_noise, new_masks, stack_flux_nonoise, stack_flux_nonoise_infres, stack_data_flux],
         names=('Wave', 'Flux', 'Noise', 'Mask', 'Flux_nonoise', 'Flux_nonoise_infres', 'corresponding_data_flux'))
     new_data = tab.vstack([new_data, tab_line])
-
-
