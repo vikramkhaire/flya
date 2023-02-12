@@ -56,7 +56,7 @@ def uniform_grid(data, wave_to_grid):
         new_noise = noise(wave_to_grid)
         # masks
         mask = interpolate.interp1d(data['Wave'][i], data['Mask'][i], fill_value=-1, bounds_error=False) # -1 for out of bound
-        new_masks = np.array(mask(wave_to_grid), dtype = np.int8)
+        new_masks = np.array(mask(wave_to_grid), dtype = np.int16)
         tab_line = tab.Table([wave_to_grid, new_flux, new_noise, new_masks, new_flux_nonoise, new_flux_nonoise_infres, new_data_flux],
                              names = ('Wave', 'Flux', 'Noise', 'Mask', 'Flux_nonoise', 'Flux_nonoise_infres', 'corresponding_data_flux'))
         new_data = tab.vstack([new_data, tab_line])
@@ -111,13 +111,14 @@ final_wave = np.arange(start_wavelength, end_wavelength+0.1*wavelength_scale, wa
 # 0.1* scale is for making sure that the last element is taken into account
 
 # find sets of all QSO dataset
-set_of_indices = np.zeros((len(obj), min_number_of_objects), dtype=np.int8) # integer array
+set_of_indices = np.zeros((len(obj), min_number_of_objects), dtype=np.int16) # integer array
 for qso, i in zip(obj, np.arange(len(obj))):
+    print(qso, i )
     obj_ind_list = find_indices(object_list, qso)
     # choose random min_number of obj
     selected_indices = np.random.choice(obj_ind_list, min_number_of_objects, replace = False)
     #print(selected_indices)
-    set_of_indices[i] =  np.array(selected_indices)
+    set_of_indices[i, :] =  selected_indices
 
 print(set_of_indices)
 
@@ -126,14 +127,20 @@ print(set_of_indices)
 
 stacked_data = tab.Table()
 
-for j in range(min_number_of_objects):
+#min_number_of_objects = 2
+#for j in range(min_number_of_objects):
+
+if 1:
+    j= 0
     #qso_ind = selected_indices[:, j]     # indices of qso's to stack
     qso_ind = set_of_indices[:, j]  # indices of qso's to stack
 
     data = tab.Table()
     # create a data table
     for index in qso_ind:
-        data = tab.vstack(data, d[index])
+        print(index)
+        print(d[index])
+        data = tab.vstack([data, d[index]])
 
     data_to_stack = uniform_grid(data=data, wave_to_grid=final_wave)
 
@@ -166,6 +173,9 @@ for j in range(min_number_of_objects):
 
     # find ways to deal with masks () --> fix new_masks
     tab_line = tab.Table(
-        [stack_wave, stack_flux, stack_noise, new_masks, stack_flux_nonoise, stack_flux_nonoise_infres, stack_data_flux],
+        [stack_wave, stack_flux, stack_noise, new_mask_array, stack_flux_nonoise, stack_flux_nonoise_infres, stack_data_flux],
         names=('Wave', 'Flux', 'Noise', 'Mask', 'Flux_nonoise', 'Flux_nonoise_infres', 'corresponding_data_flux'))
     new_data = tab.vstack([new_data, tab_line])
+
+
+new_data.write('test_stack.fits', overwrite = True)
