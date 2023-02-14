@@ -57,7 +57,7 @@ def uniform_grid(data, wave_to_grid):
         # masks
         mask = interpolate.interp1d(data['Wave'][i], data['Mask'][i], fill_value=-1, bounds_error=False) # -1 for out of bound
         new_masks = np.array(mask(wave_to_grid), dtype = np.int16)
-        tab_line = tab.Table([wave_to_grid, new_flux, new_noise, new_masks, new_flux_nonoise, new_flux_nonoise_infres, new_data_flux],
+        tab_line = tab.Table([[wave_to_grid], [new_flux], [new_noise], [new_masks], [new_flux_nonoise], [new_flux_nonoise_infres], [new_data_flux]],
                              names = ('Wave', 'Flux', 'Noise', 'Mask', 'Flux_nonoise', 'Flux_nonoise_infres', 'corresponding_data_flux'))
         new_data = tab.vstack([new_data, tab_line])
 
@@ -155,6 +155,7 @@ if 1:
     # this is for the mean method
     # TODO code for other methods (median and SN weighted)
     new_mask_array = []
+    new_data = tab.Table()
     for k in range(len(final_wave)):
         #np.count_nonzero(np.isnan(data))
         stack_wave.append(np.nanmean(data_to_stack['Wave'][:, k]))
@@ -173,7 +174,7 @@ if 1:
 
     # find ways to deal with masks () --> fix new_masks
     tab_line = tab.Table(
-        [stack_wave, stack_flux, stack_noise, new_mask_array, stack_flux_nonoise, stack_flux_nonoise_infres, stack_data_flux],
+        [[stack_wave], [stack_flux], [stack_noise], [new_mask_array], [stack_flux_nonoise], [stack_flux_nonoise_infres], [stack_data_flux]],
         names=('Wave', 'Flux', 'Noise', 'Mask', 'Flux_nonoise', 'Flux_nonoise_infres', 'corresponding_data_flux'))
     new_data = tab.vstack([new_data, tab_line])
 
