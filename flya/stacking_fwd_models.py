@@ -128,9 +128,7 @@ print(set_of_indices)
 stacked_data = tab.Table()
 
 #min_number_of_objects = 2
-#for j in range(min_number_of_objects):
-
-if 1:
+for j in range(min_number_of_objects):
     j= 0
     #qso_ind = selected_indices[:, j]     # indices of qso's to stack
     qso_ind = set_of_indices[:, j]  # indices of qso's to stack
@@ -139,7 +137,7 @@ if 1:
     # create a data table
     for index in qso_ind:
         print(index)
-        print(d[index])
+        #print(d[index])
         data = tab.vstack([data, d[index]])
 
     data_to_stack = uniform_grid(data=data, wave_to_grid=final_wave)
